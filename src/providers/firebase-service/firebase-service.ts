@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -12,7 +11,12 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class FirebaseServiceProvider {
 
   constructor(public db: AngularFireDatabase) {
-    console.log('Hello FirebaseServiceProvider Provider');
+  }
+
+  getAll() {
+    return this.db.list('courses').snapshotChanges().map(data => {
+      return data.map(d => ({key: d.key, ...d.payload.val()}));
+    });
   }
 
   save(course: any) {

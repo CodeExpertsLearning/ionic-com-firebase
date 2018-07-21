@@ -8,11 +8,10 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
+  <ion-list>
+    <button ion-item *ngFor="let c of courses|async" (click)="goToSingle(c.key)">
+      {{c.title}} - {{c.price|currency:"BRL"}}
+    </button>
+  </ion-list>
   <button ion-button secondary (click)="add()">Adicionar Curso</button>
 </ion-content>
