@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let c of courses|async" (click)="goToSingle(c.key)">
+    <button ion-item *ngFor="let c of courses|async" (click)="goToSingle(c)">
       {{c.title}} - {{c.price|currency:"BRL"}}
     </button>
   </ion-list>

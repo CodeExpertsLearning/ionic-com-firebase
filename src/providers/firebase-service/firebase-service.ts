@@ -9,20 +9,31 @@ import { AngularFireDatabase } from 'angularfire2/database';
 */
 @Injectable()
 export class FirebaseServiceProvider {
+  private dbRef;
 
   constructor(public db: AngularFireDatabase) {
+    this.dbRef = this.db.list('courses');
   }
 
   getAll() {
-    return this.db.list('courses').snapshotChanges().map(data => {
+    return this.dbRef.snapshotChanges().map(data => {
       return data.map(d => ({key: d.key, ...d.payload.val()}));
     });
   }
 
   save(course: any) {
-    this.db.list('courses')
-           .push(course)
-           .then(r => console.log(r));
+    return this.dbRef
+           .push(course);
+  }
+
+  update(course) {
+    return this.dbRef
+           .update(course.key, course);
+  }
+
+  remove(course) {
+    return this.dbRef
+           .remove(course.key);
   }
 
 }

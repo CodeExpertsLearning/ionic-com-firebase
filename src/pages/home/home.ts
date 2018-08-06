@@ -2,6 +2,7 @@ import { FirebaseServiceProvider } from './../../providers/firebase-service/fire
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SavePage } from '../save/save';
+import { EditPage } from '../edit/edit';
 
 @Component({
   selector: 'page-home',
@@ -22,7 +23,9 @@ export class HomePage {
       this.navCtrl.push(SavePage);
   }
 
-  goToSingle(key) {
-    alert(key);
+  goToSingle(course) {
+    this.navCtrl.push(EditPage, {
+      'course': course
+    });
   }
 }

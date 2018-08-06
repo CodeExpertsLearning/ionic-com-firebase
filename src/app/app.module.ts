@@ -12,13 +12,16 @@ import { AngularFireModule } from 'angularfire2';
 import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 import { SavePage } from '../pages/save/save';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { ToastrServiceProvider } from '../providers/toastr-service/toastr-service';
+import { EditPage } from '../pages/edit/edit';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    SavePage
+    SavePage,
+    EditPage
   ],
   imports: [
     BrowserModule,
@@ -38,13 +41,15 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     MyApp,
     HomePage,
     ListPage,
-    SavePage
+    SavePage,
+    EditPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FirebaseServiceProvider
+    FirebaseServiceProvider,
+    ToastrServiceProvider
   ]
 })
 export class AppModule {}
